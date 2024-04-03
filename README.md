@@ -1,6 +1,6 @@
 # CS3560 PSS Project
 
-By Brandon Tang, Sanat Vankayalapati, Ryan Nguyen
+By Anna Hock, Tam Dinh, Thu Nguyen, Brandon Tang, Sanat Vankayalapati, Ryan Nguyen
 
 # Project Description
 
