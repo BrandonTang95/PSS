@@ -21,7 +21,7 @@ date to a given end date. For example, one task might be for one hour and 15 min
 evening at 7:00 p.m., from January 28th to May 5th.
 
 Another type of task is a *transient task*, which only occurs one time. These tasks are essentially a simple one time task. 
-For example, a task might be for one hour on Wednesday from 12:00 p.m. to 1:00 p.m. on April 1st. Transient tasks can be further subdivided into Visit, Shopping, and Appointment. 
+For example, a task might be for one hour on Wednesday from 12:00 p.m. to 1:00 p.m. on April 1st. Transient tasks can be further subdivided into *Visit*, *Shopping*, and *Appointment*. 
 
 A third type of task is an *anti-task*, which cancels out one particular occurence of a recurring task. For
 example, an anti-task might be set for February 25th, for an hour and 15 minutes starting at 7:00 p.m.
@@ -33,4 +33,18 @@ group can suggest other types of recurring tasks.
 
 
 # Design
+
+The PSS will use the *Model-View-Controller* pattern. As the name states, the implementation will have three primary categories of objects:
+a **Model**, a **Viewer**, and a **Controller**.
+
+
+- The **Model** manages the data, which in this case is the list of all of the tasks. The model can be
+asked to return various lists of tasks, and can be asked to create, edit, or delete tasks. The
+model makes sure that there are no errors, such as overlapping tasks or tasks that are too large
+or too small.
+
+- The **Viewer** (there may be multiple objects that are Viewers) are used to display some information. This is how the user can see a schedule
+or part of a schedule.
+
+- The **Controller** (there may be multiple of these) is the main object that interacts with the user. The controller decides what actions to take.
 
