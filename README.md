@@ -28,8 +28,7 @@ example, an anti-task might be set for February 25th, for an hour and 15 minutes
 This task would need to refer to the recurring task. _Note that if an anti-task removes one instance of a
 recurring task, then a transient task could be scheduled at that same time._
 
-Recurring tasks can be further subdivided into *Course*, *Study*, *Sleep*, *Exercise*, *Work*, and *Meal*. Your
-group can suggest other types of recurring tasks.
+Recurring tasks can be further subdivided into *Course*, *Study*, *Sleep*, *Exercise*, *Work*, and *Meal*. 
 
 
 # Design
