@@ -9,25 +9,25 @@ from task import RecurringTask, TransientTask, AntiTask
 # Scheduler Class
 class Scheduler:
        
-       """Initialize the scheduler."""
+       # Initialize the scheduler.
        def __init__(self):
               self.tasks = []
        
        
        
-       """ Add a task to the scheduler."""
+       # Add a task to the scheduler.
        def add_tasks(self, task):
               self.tasks.append(task)
        
        
        
-       """Delete a task from the scheduler."""
+       # Delete a task from the scheduler.
        def delete_task(self, name):
               self.tasks = [task for task in self.tasks if task.name != name]
        
        
        
-       """Edit an existing task in the scheduler."""
+       # Edit an existing task in the scheduler.
        def edit_task(self, name, new_task):
               for task in self.tasks:
                      if task.name == name:
@@ -44,7 +44,7 @@ class Scheduler:
        
        
        
-       """Find a task by name."""
+       # Find a task by name.
        def find_task(self, name):
               for task in self.tasks:
                      if task.name == name:
@@ -53,7 +53,7 @@ class Scheduler:
        
        
        
-       """Write the schedule to a JSON file."""
+       # Write the schedule to a JSON file.
        def write_schedule_to_file(self, file_name):
               tasks_data = []
               for task in self.tasks:
@@ -77,8 +77,8 @@ class Scheduler:
        
        
        
-       """Read the schedule from a JSON file."""
-       def read_schedule_from_file(self,file_name):
+       # Read the schedule from a JSON file
+       def read_schedule_from_file(self, file_name):
               try:
                      with open(file_name, 'r') as f:
                             tasks_data = json.load(f)
@@ -101,7 +101,11 @@ class Scheduler:
                                                  task_data["StartTime"],
                                                  task_data["Duration"]
                                           )
-                                   self.add_task(task)
+                                   if self._check_task_overlap(task):
+                                          print(f"Adding task '{task.name}' has failed: Task overlaps with existing tasks.")
+                                   else:
+                                          self.add_tasks(task)
+                                          print(f"Adding task '{task.name}' has succeeded.")
               except FileNotFoundError:
                      print("File not found.")
               except json.JSONDecodeError:
@@ -109,7 +113,7 @@ class Scheduler:
        
        
        
-       """View the schedule for a specific day."""
+       # View the schedule for a specific day.
        def view_schedule_for_day(self, date):
               start_datetime = datetime.strptime(str(date), "%Y%m%d")
               end_datetime = start_datetime + timedelta(days=1)
@@ -128,7 +132,7 @@ class Scheduler:
                      
        
                     
-       """View the schedule for a specific week.""" 
+       # View the schedule for a specific week. 
        def view_schedule_for_week(self, start_date):
               start_datetime = datetime.strptime(str(start_date), "%Y%m%d")
               end_datetime = start_datetime + timedelta(days=7)
@@ -148,7 +152,8 @@ class Scheduler:
                      print(task)
                      
                      
-       """View the schedule for a specific month."""
+                     
+       # View the schedule for a specific month.
        def view_schedule_for_month(self, start_date):
               start_datetime = datetime.strptime(str(start_date), "%Y%m%d")
               end_datetime = start_datetime + timedelta(days=30)
@@ -168,15 +173,17 @@ class Scheduler:
                      
 
        
-       """Check if a new task overlaps with existing tasks."""
+       # Check if a new task overlaps with existing tasks
        def _check_task_overlap(self, task):
               task_start = task.start_time
               task_end = task.start_time + task.duration
               for existing_task in self.tasks:
-                     existing_start = existing_task.start_time
-                     existing_end = existing_task.start_time + existing_task.duration
-                     if existing_task != task:
+                     if existing_task != task and existing_task.name == task.name and existing_task.date == task.date and existing_task.type == task.type:
+                            # Check for overlap based on task name and date
+                            existing_start = existing_task.start_time
+                            existing_end = existing_task.start_time + existing_task.duration
                             if (existing_start <= task_start < existing_end) or (existing_start < task_end <= existing_end) or \
-                                          (task_start <= existing_start < task_end) or (task_start < existing_end <= task_end):
+                                   (task_start <= existing_start < task_end) or (task_start < existing_end <= task_end):
                                    return True
               return False
+       

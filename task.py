@@ -3,8 +3,7 @@
 
 # Task Class
 class Task:
-       """Class representing a generic task."""
-       
+       # Class representing a generic task.
        def __init__(self, name, type_, start_time, duration):
               """
               Initialize a task.
@@ -21,15 +20,16 @@ class Task:
               self.duration = duration
               
               # Valid Task Types
-              valid_types = ["Class", "Study", "Sleep", "Exercise", "Work", "Meal", "Visit", "Shopping", "Appointment", "Cancellation"]
+              self.valid_types = ["Class", "Study", "Sleep", "Exercise", "Work", "Meal", "Visit", "Shopping", "Appointment", "Cancellation"]
               
-              if self.type not in valid_types:
-                     raise ValueError("Invalid task type. Allowed types: {}".format(valid_types))
+              if self.type not in self.valid_types:
+                     print("Invalid task type. Allowed types: {}".format(self.valid_types))
+              self.type = None
               
               # Private Method
               self._validate_attributes()
               
-       """Check the validity of task attributes during initialization."""
+       # Check the validity of task attributes during initialization.
        def _validate_attributes(self):
               if not isinstance(self.name, str):
                      raise ValueError("Name must be a string.")
