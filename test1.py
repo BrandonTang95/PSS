@@ -13,19 +13,19 @@ def run_test_scenario_1():
     # print("\nScenario 1 - Step 2: Delete 'Intern Interview' (This should work.)")
     # scheduler.delete_task("Intern Interview")
 
-    # # Step 3: Add a new transient task "Intern Interview"
+    # Step 3: Add a new transient task "Intern Interview"
     # print("\nScenario 1 - Step 3: Add 'Intern Interview' (This should work.)")
     # scheduler.create_task(TransientTask("Intern Interview", "Appointment", 20200427, 17, 2.5))
 
-    # # Step 4: Add a new transient task "Watch a movie" (Should fail)
+    # Step 4: Add a new transient task "Watch a movie" (Should fail)
     # print("\nScenario 1 - Step 4: Add 'Watch a movie' with invalid type (This should fail. There is not transient task with type 'movie'.)")
     # scheduler.create_task(TransientTask("Watch a movie", "Movie", 20200429, 21.5, 2))
 
-    # # Step 5: Add a new transient task "Watch a movie" (Should fail due to conflict)
+    # Step 5: Add a new transient task "Watch a movie" (Should fail due to conflict)
     # print("\nScenario 1 - Step 5: Add 'Watch a movie' with conflict (This should fail. You should be in class!)")
     # scheduler.create_task(TransientTask("Watch a movie", "Visit", 20200430, 18.5, 2))
 
-    # # Step 6: Read the file Set2.json (Should fail due to conflict)
+    # Step 6: Read the file Set2.json (Should fail due to conflict)
     # print("\nScenario 1 - Step 6: Read Set2.json (expect failure)")
     # scheduler.read_schedule_from_file("Set2.json")
 

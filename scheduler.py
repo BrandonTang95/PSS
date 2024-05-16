@@ -14,37 +14,24 @@ class Scheduler:
 
     # Task Methods 
     def create_task(self, task):
-        if task.task_type not in self.VALID_TASK_TYPES:
-            print(f"Error: '{task.task_type}' is not a valid task type.")
-            return 
-        
-        if any(t.name == task.name for t in self.tasks):
-            print("Error: Task name must be unique.")
-            return 
-        
-        if self.is_overlapping(task):
-            print(f"Error: Task '{task.name}' overlaps with an existing task.")
-            return 
-        
         self.tasks.append(task)
         print(f"Task '{task.name}' added successfully.")
-        
-    
+
     # def delete_task(self, task_name):
 
     
     # def view_task(self, name):
 
         
-    # def edit_task(self, name, ):
-        
+    # def edit_task(self, name):
+
 
     # Reading Test Files
     def read_schedule_from_file(self, file_name):
         try:
             with open(file_name, 'r') as file:
-                data = json.load(file)
-                for i in data:
+                task_data = json.load(file)
+                for i in task_data:
                     print(i)
                 print("Schedule loaded successfully.")
                 
@@ -53,10 +40,8 @@ class Scheduler:
             return False
         
     # def write_schedule_to_file(self, file_name):
-            
-            
+        
+        
     # def view_schedule(self, start_date, period):
-    
-
-    
-    
+        
+        
