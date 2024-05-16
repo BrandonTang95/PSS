@@ -1,42 +1,33 @@
 
-# test1.py
-
+from task import TransientTask, RecurringTask, AntiTask
 from scheduler import Scheduler
-from controller import Controller
-from task import Task, RecurringTask, TransientTask, AntiTask
 
-def main():
-       # Initialize the scheduler and controller
-       scheduler = Scheduler()
-       controller = Controller(scheduler)
+def run_test_scenario_1():
+    scheduler = Scheduler()
 
-       # Test reading Set1.json
-       print("Reading Set1.json...")
-       controller.read_schedule_from_file("Set1.json")
+    # Step 1: Read the file Set1.json
+    print("\nScenario 1 - Step 1: Read Set1.json (This should work.)")
+    scheduler.read_schedule_from_file("Set1.json")
 
-       # Test deleting the task "Intern Interview"
-       print("\nDeleting the task 'Intern Interview'...")
-       controller.delete_task("Intern Interview")
+    # Step 2: Delete the task "Intern Interview"
+    # print("\nScenario 1 - Step 2: Delete 'Intern Interview' (This should work.)")
+    # scheduler.delete_task("Intern Interview")
 
-       # Test adding a new transient task "Intern Interview" for a different date
-       print("\nAdding a new transient task 'Intern Interview' for a different date...")
-       new_task1 = TransientTask("Intern Interview", "Appointment", 20200427, 17, 2.5)
-       controller.create_task(new_task1)
+    # # Step 3: Add a new transient task "Intern Interview"
+    # print("\nScenario 1 - Step 3: Add 'Intern Interview' (This should work.)")
+    # scheduler.create_task(TransientTask("Intern Interview", "Appointment", 20200427, 17, 2.5))
 
-       # Test adding a new transient task "Watch a movie" with an invalid type
-       print("\nAdding a new transient task 'Watch a movie' with an invalid type...")
-       new_task2 = TransientTask("Watch a movie", "Movie", 20200429, 21.5, 2)
-       controller.create_task(new_task2)
+    # # Step 4: Add a new transient task "Watch a movie" (Should fail)
+    # print("\nScenario 1 - Step 4: Add 'Watch a movie' with invalid type (This should fail. There is not transient task with type 'movie'.)")
+    # scheduler.create_task(TransientTask("Watch a movie", "Movie", 20200429, 21.5, 2))
 
-       # Test adding a new transient task "Watch a movie" with a time conflict
-       print("\nAdding a new transient task 'Watch a movie' with a time conflict...")
-       new_task3 = TransientTask("Watch a movie", "Visit", 20200430, 18.5, 2)
-       controller.create_task(new_task3)
+    # # Step 5: Add a new transient task "Watch a movie" (Should fail due to conflict)
+    # print("\nScenario 1 - Step 5: Add 'Watch a movie' with conflict (This should fail. You should be in class!)")
+    # scheduler.create_task(TransientTask("Watch a movie", "Visit", 20200430, 18.5, 2))
 
-       # Test reading Set2.json (should fail due to conflict)
-       print("\nReading Set2.json...")
-       controller.read_schedule_from_file("Set2.json")
-
+    # # Step 6: Read the file Set2.json (Should fail due to conflict)
+    # print("\nScenario 1 - Step 6: Read Set2.json (expect failure)")
+    # scheduler.read_schedule_from_file("Set2.json")
 
 if __name__ == "__main__":
-       main()
+    run_test_scenario_1()

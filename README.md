@@ -36,7 +36,6 @@ Recurring tasks can be further subdivided into *Course*, *Study*, *Sleep*, *Exer
 The PSS will use the *Model-View-Controller* pattern. As the name states, the implementation will have three primary categories of objects:
 a **Model**, a **Viewer**, and a **Controller**.
 
-
 - The **Model** manages the data, which in this case is the list of all of the tasks. The model can be
 asked to return various lists of tasks, and can be asked to create, edit, or delete tasks. The
 model makes sure that there are no errors, such as overlapping tasks or tasks that are too large
